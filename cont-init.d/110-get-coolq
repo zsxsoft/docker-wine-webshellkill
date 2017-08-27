@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv /bin/bash
-hasexe=$(find ~/coolq -maxdepth 1 -type f -name '*.exe')
+hasexe=$(find /home/user/coolq -maxdepth 1 -type f -name '*.exe')
 if [ "$hasexe" != "" ] ; then
     echo 'CoolQ already exists, skip download.'
 else
