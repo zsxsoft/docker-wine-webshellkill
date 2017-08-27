@@ -5,7 +5,8 @@ RUN apt-get update && \
         software-properties-common \
         python-software-properties \
         python3-software-properties \
-        cabextract unzip language-pack-zh-hans && \
+        cabextract unzip \
+        language-pack-zh-hans ttf-wqy-zenhei ttf-wqy-microhei && \
     locale-gen zh_CN.UTF-8 && \
     add-apt-repository -y ppa:wine/wine-builds && \
     dpkg --add-architecture i386 && \
@@ -15,9 +16,11 @@ RUN apt-get update && \
     chmod 755 /usr/local/bin/winetricks && \
     apt-get clean
 
-RUN sudo -Hu user /usr/local/bin/winetricks winhttp && \
-    sudo -Hu user /usr/local/bin/winetricks msscript && \
-    sudo -Hu user /usr/local/bin/winetricks cjkfonts && \
+RUN sudo -Hu user /usr/local/bin/winetricks -q win7 && \
+    sudo -Hu user /usr/local/bin/winetricks -q winhttp && \
+    sudo -Hu user /usr/local/bin/winetricks -q msscript && \
+    sudo -Hu user /usr/local/bin/winetricks -q fakechinese && \
+    sudo -Hu user /usr/local/bin/winetricks -q fontsmooth=rgb && \
     mkdir /home/user/coolq
 
 ENV LANG=zh_CN.UTF-8 \

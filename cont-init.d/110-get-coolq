@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv /bin/bash
-if ([ -f /home/user/coolq/CQA.exe ] || [ -f /home/user/coolq/CQP.exe ]); then
+hasexe=$(find ~/coolq -maxdepth 1 -type f -name '*.exe')
+if [ "$hasexe" != "" ] ; then
     echo 'CoolQ already exists, skip download.'
 else
     echo 'Downloading CoolQ ...'

@@ -4,17 +4,27 @@ export VNC_PASSWD=''
 export USER_PASSWD=''
 
 export TERM=linux
+export LC_CTYPE=zh_CN.UTF-8
+
+cqexe=$(basename $(find ~/coolq -maxdepth 1 -type f -name '*.exe' | head -n 1))
 
 while true; do
-    # 检查进程是否存在
-    process=`ps aux | grep 'CQ.\.exe'`
-    if [ "$process" == '' ]; then
-        # 不存在则重启
-        wine ~/coolq/CQ?.exe /account $COOLQ_ACCOUNT
-        # 进程退出后等待 30 秒后再检查，避免 CQ 自重启导致误判
-        sleep 30
+    wine ~/coolq/$cqexe /account $COOLQ_ACCOUNT
+    echo "[CQDaemon] CoolQ process exited, searching new process ..."
+    sleep 1
+    cqpid=$(ps x | grep $cqexe | head -n 1 | awk '{print $1}')
+    if [ "$cqpid" == "" ]; then
+        echo "[CQDaemon] No CoolQ process found, start new process ..."
     else
-        # 存在则说明是别的途径启动的，多等一会儿吧
-        sleep 100
+        echo "[CQDaemon] Found CoolQ process, we'll wait it."
+        tail -f /dev/null --pid=$cqpid
     fi
+    # 酷Q 退出后直接重启 wine，然后重开。
+    # 因为酷Q 更新之类的会自己开回来，所以把整个 wine 干掉重启，比较靠谱
+    echo "[CQDaemon] CoolQ exited. Restarting wine ..."
+    sleep 1
+    wine wineboot --kill
+    wineserver -k9
+    echo "[CQDaemon] Restarted, CoolQ will start after 3 seconds ..."
+    sleep 3
 done
