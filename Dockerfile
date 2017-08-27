@@ -5,8 +5,8 @@ RUN apt-get update && \
         software-properties-common \
         python-software-properties \
         python3-software-properties \
-        cabextract unzip \
-        language-pack-zh-hans ttf-wqy-zenhei ttf-wqy-microhei && \
+        cabextract unzip python-numpy \
+        language-pack-zh-hans ttf-wqy-microhei && \
     locale-gen zh_CN.UTF-8 && \
     add-apt-repository -y ppa:wine/wine-builds && \
     dpkg --add-architecture i386 && \

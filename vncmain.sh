@@ -5,6 +5,7 @@ export USER_PASSWD=''
 
 export TERM=linux
 export LC_CTYPE=zh_CN.UTF-8
+export WINEDEBUG=-all
 
 cqexe=$(basename $(find ~/coolq -maxdepth 1 -type f -name '*.exe' | head -n 1))
 
