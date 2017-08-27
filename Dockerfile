@@ -21,7 +21,8 @@ RUN sudo -Hu user /usr/local/bin/winetricks -q win7 && \
     sudo -Hu user /usr/local/bin/winetricks -q msscript && \
     sudo -Hu user /usr/local/bin/winetricks -q fakechinese && \
     sudo -Hu user /usr/local/bin/winetricks -q fontsmooth=rgb && \
-    mkdir /home/user/coolq
+    mkdir /home/user/coolq && \
+    rm -rf /home/user/.cache/winetricks
 
 ENV LANG=zh_CN.UTF-8 \
     LC_ALL=zh_CN.UTF-8 \
