@@ -16,7 +16,7 @@ while true; do
     wait
     echo "[CQDaemon] CoolQ exited, maybe updated."
     echo "[CQDaemon] Searching for the new process ..."
-    sleep 1
+    sleep 3
     cqpid=$(ps x | grep $cqexe | head -n 1 | awk '{print $1}')
     if [ "$cqpid" == "" ]; then
         echo "[CQDaemon] No CoolQ process found, start new process ..."

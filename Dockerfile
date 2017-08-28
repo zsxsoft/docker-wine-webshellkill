@@ -18,13 +18,24 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists
 
 COPY winhttp_2ksp4.verb /tmp/winhttp_2ksp4.verb
+COPY coolq.reg /tmp/coolq.reg
+COPY luna.msstyles /tmp/luna.msstyles
 
 RUN sudo -Hu user WINEARCH=win32 /usr/bin/wine wineboot && \
+    sudo -Hu user mkdir -p /home/user/.wine/drive_c/windows/Resources/Themes/luna/ && \
+    sudo -Hu user cp /tmp/luna.msstyles /home/user/.wine/drive_c/windows/Resources/Themes/luna/luna.msstyles && \
+    sudo -Hu user /usr/bin/wine regedit.exe /s /tmp/coolq.reg && \
+    sudo -Hu user wineboot && \
+    echo 'quiet=on' > /etc/wgetrc && \
     sudo -Hu user /usr/local/bin/winetricks -q win7 && \
     sudo -Hu user /usr/local/bin/winetricks -q /tmp/winhttp_2ksp4.verb && \
     sudo -Hu user /usr/local/bin/winetricks -q msscript && \
-    sudo -Hu user /usr/local/bin/winetricks -q fakechinese && \
     sudo -Hu user /usr/local/bin/winetricks -q fontsmooth=rgb && \
+    wget https://dlsec.cqp.me/docker-simsun -O /tmp/simsun.zip && \
+    rm /etc/wgetrc && \
+    mkdir -p /home/user/.wine/drive_c/windows/Fonts && \
+    unzip /tmp/simsun.zip -d /home/user/.wine/drive_c/windows/Fonts && \
+    rm -f /tmp/simsun.zip && \
     mkdir /home/user/coolq && \
     chsh -s /bin/bash user && \
     rm -rf /home/user/.cache/winetricks
