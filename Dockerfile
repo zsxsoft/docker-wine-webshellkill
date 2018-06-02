@@ -1,4 +1,4 @@
-FROM oott123/novnc:latest
+FROM oott123/novnc:v0.1.1
 
 RUN apt-get update && \
     apt-get install -y \
