@@ -26,6 +26,6 @@ docker run --rm -p 9000:9000 -v `pwd`:/home/user/coolq coolq/wine-coolq
 在创建 docker 容器时，使用以下环境变量，可以调整容器行为。
 
 * **`VNC_PASSWD`** 设置 VNC 密码。注意该密码不能超过 8 个字符。
-* **`COOLQ_ACCOUNT`** 设置要登录 酷Q 的 QQ 帐号。在第一次手动登录后，你可以勾选“快速登录”功能以启用自动登录，此后， docker 容器启动或 酷Q 异常退出时，便会自动为你登录该帐号。
+* **`COOLQ_ACCOUNT`** 设置要登录 酷Q 的帐号。在第一次手动登录后，你可以勾选“快速登录”功能以启用自动登录，此后， docker 容器启动或 酷Q 异常退出时，便会自动为你登录该帐号。
 * **`COOLQ_URL`** 设置下载 酷Q 的地址，默认为 `http://dlsec.cqp.me/cqa-tuling`，即 酷Q Air 图灵版。请确保下载后的文件能解压出 `酷Q Air/CQA.exe` 或 `酷Q Pro/CQP.exe`
 
