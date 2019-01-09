@@ -10,7 +10,7 @@ docker-wine-webshellkill 可以使你通过 Wine 在 Docker 容器中运行 WebS
 如果你在服务器上使用 `docker` 或者和 docker 兼容的服务，只需执行：
 
 ```bash
-docker pull zsxsoft/webshellkill
+docker pull zsxsoft/docker-wine-webshellkill
 mkdir webshellkill && cd webshellkill
 docker run --rm -p 9000:9000 -v `pwd`:/home/user/data webshellkill
 ```
@@ -23,4 +23,4 @@ docker run --rm -p 9000:9000 -v `pwd`:/home/user/data webshellkill
 在创建 docker 容器时，使用以下环境变量，可以调整容器行为。
 
 * **`VNC_PASSWD`** 设置 VNC 密码。注意该密码不能超过 8 个字符。
-* **`WEBSHELLKILL_URL`** 设置下载 酷Q 的地址，默认为 `http://d99net.net/down/WebShellKill_V2.0.9.zip` 。
+* **`WEBSHELLKILL_URL`** 设置下载 WebShellKill 的地址，默认为 `http://d99net.net/down/WebShellKill_V2.0.9.zip` 。
